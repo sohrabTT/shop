@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Vazirmatn } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { CartProvider } from "@/hooks/use-cart"
+import { AuthProvider } from "@/contexts/auth-context"
 import "./globals.css"
 
 const vazirmatn = Vazirmatn({ subsets: ["arabic"] })
@@ -21,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" className="dark">
       <body className={`${vazirmatn.className} font-sans antialiased`}>
-        <CartProvider>
-          {children}
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            {children}
+          </CartProvider>
+        </AuthProvider>
         <Analytics />
       </body>
     </html>

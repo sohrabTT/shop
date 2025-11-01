@@ -1,0 +1,37 @@
+"use client"
+
+import { ChevronRight } from "lucide-react"
+import Link from "next/link"
+
+interface BreadcrumbItem {
+  label: string
+  href: string
+}
+
+interface BreadcrumbsProps {
+  items: BreadcrumbItem[]
+}
+
+export function Breadcrumbs({ items }: BreadcrumbsProps) {
+  return (
+    <nav className="flex items-center space-x-2 text-sm">
+      {items.map((item, index) => (
+        <div key={index} className="flex items-center">
+          {index > 0 && (
+            <ChevronRight className="h-4 w-4 mx-2 text-muted-foreground" />
+          )}
+          {index === items.length - 1 ? (
+            <span className="text-foreground font-medium">{item.label}</span>
+          ) : (
+            <Link
+              href={item.href}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {item.label}
+            </Link>
+          )}
+        </div>
+      ))}
+    </nav>
+  )
+}

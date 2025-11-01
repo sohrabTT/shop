@@ -4,6 +4,7 @@ import { Vazirmatn } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { CartProvider } from "@/hooks/use-cart"
 import { AuthProvider } from "@/contexts/auth-context"
+import ChatWidget from "@/components/chat-widget"
 import "./globals.css"
 
 const vazirmatn = Vazirmatn({ subsets: ["arabic"] })
@@ -25,6 +26,7 @@ export default function RootLayout({
         <AuthProvider>
           <CartProvider>
             {children}
+            <ChatWidget />
           </CartProvider>
         </AuthProvider>
         <Analytics />
